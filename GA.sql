@@ -88,6 +88,22 @@ Create table preco(
 	foreign key(id_produto)
 	references produto(idproduto)
 );
+
+Create table estoque(
+	idestoque int primary key auto_increment,
+	quantidade int not null,
+	estoque_minimo int not null,
+	estoque_maximo int not null,
+	id_produto int,
+
+	foreign key(id_produto)
+	references produto(idproduto)
+);
+
+/*========================= Sprint 3 =======================*/
+
+/* tabelas de pedidos e orçamentos */
+
 Create table pedido(
 	idpedido int primary key auto_increment,
 	data_pedido date not null,
@@ -100,7 +116,7 @@ Create table pedido(
 	id_vendedor int,
 
 	foreign key(id_cliente)
-	references cliente(idclinte)
+	references cliente(idcliente),
 
 	foreign key(id_vendedor)
 	references vendedor(idvendedor)
@@ -116,7 +132,7 @@ Create table pedido_item(
 	id_pedido int,
 
 	foreign key(id_produto)
-	references produto(idproduto)
+	references produto(idproduto),
 
 	foreign key(id_pedido)
 	references pedido(idpedido)
@@ -134,10 +150,10 @@ Create table orcamento(
 	id_cliente int,
 
 	foreign key(id_vendedor)
-	references vendedor(idvendedor)
+	references vendedor(idvendedor),
 
 	foreign key(id_cliente)
-	references cliente(id_cliente)
+	references cliente(idcliente)
 );
 
 Create table orcamento_item(
@@ -149,7 +165,7 @@ Create table orcamento_item(
 	id_produto int,
 
 	foreign key(id_orcamento)
-	references orcamento(idorcamento)
+	references orcamento(idorcamento),
 
 	foreign key(id_produto)
 	references produto(idproduto)
